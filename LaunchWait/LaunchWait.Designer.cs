@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-namespace launchwait
+namespace LaunchWait
 {
     partial class LaunchWait
     {

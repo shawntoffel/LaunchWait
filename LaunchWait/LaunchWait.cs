@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using LaunchWait.Configuration;
 
-namespace launchwait
+namespace LaunchWait
 {
     public partial class LaunchWait : Form
     {
@@ -17,12 +12,13 @@ namespace launchwait
             InitializeComponent();
             _startups = new List<Startup>();
 
-            var allPrograms = System.Configuration.ConfigurationManager.AppSettings;
-
-            foreach (string key in allPrograms)
+            var allProcesses = Configuration.Section.GetSection();
+            
+            foreach (Process key in allProcesses.LaunchSettings)
             {
-                var startup = new Startup(key, allPrograms[key]);
-                startup.Time = 5;
+                
+                var startup = new Startup(key.Name, key.Path);
+                startup.Time = key.Time;
                 _startups.Add(startup);
 
                 var label = new Label();
@@ -30,8 +26,9 @@ namespace launchwait
 
                 flowLayoutPanel.Controls.Add(label);
                 flowLayoutPanel.Controls.Add(startup.Label);
+                Console.WriteLine(key);
             }
-
+        
             foreach(Startup startup in _startups)
             {
                 startup.StartCountdown();
