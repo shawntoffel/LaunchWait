@@ -18,7 +18,7 @@ namespace LaunchWait
             {
                 
                 var startup = new Startup(key.Name, key.Path);
-                startup.Time = key.Time;
+                startup.Time = key.Delay;
                 _startups.Add(startup);
 
                 var label = new Label();

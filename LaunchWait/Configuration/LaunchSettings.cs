@@ -31,7 +31,7 @@ namespace LaunchWait.Configuration
         {
             get
             {
-                return base.BaseGet(index) as Process;
+                return this.BaseGet(index) as Process;
             }
         }
     }

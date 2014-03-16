@@ -31,7 +31,7 @@ namespace LaunchWait.Configuration
         }
 
         [ConfigurationProperty("delay")]
-        public int Time
+        public int Delay
         {
             get
             {

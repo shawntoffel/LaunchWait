@@ -6,13 +6,13 @@ namespace LaunchWait.Configuration
     {
         public static readonly string sectionName = "LaunchSettings";
 
-        [ConfigurationProperty("LaunchSettings", IsDefaultCollection = true)]
+        [ConfigurationProperty("", IsDefaultCollection = true)]
         [ConfigurationCollection(typeof(LaunchSettings), AddItemName="Process")]
         public LaunchSettings LaunchSettings
         {
             get
             {
-                return this["LaunchSettings"] as LaunchSettings;
+                return this[""] as LaunchSettings;
             }
         }
 
