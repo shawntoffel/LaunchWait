@@ -60,5 +60,14 @@ namespace LaunchWait
                 process.RunProcess();
             }
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var workArea = System.Windows.SystemParameters.WorkArea;
+
+            this.MaxHeight = workArea.Height;
+            this.Left = workArea.Right - this.Width;
+            this.Top = workArea.Bottom - this.Height;
+        }
     }
 }
