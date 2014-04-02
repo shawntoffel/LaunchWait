@@ -15,6 +15,8 @@ namespace LaunchWait.UserControls
         private int _remainingTime;
         private DispatcherTimer _timer = new DispatcherTimer(DispatcherPriority.Render);
 
+        public event EventHandler Complete;
+
         public ProcessTimer(string name, string path, int delay)
         {
             InitializeComponent();
@@ -50,9 +52,16 @@ namespace LaunchWait.UserControls
             }
         }
 
+        private void SendComplete()
+        {
+            if (this.Complete != null)
+            {
+                this.Complete(this, EventArgs.Empty);
+            }
+        }
+
         public void RunProcess()
         {
-
             try
             {
                 System.Diagnostics.Process.Start(_path);
@@ -61,15 +70,12 @@ namespace LaunchWait.UserControls
             {
                 MessageBox.Show(ex.Message, nameTextBlock.Text);
             }
+
+            SendComplete();
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (!checkBox.IsChecked.Value)
-            {
-                return;
-            }
-
             if (_remainingTime > 0)
             {
                 _remainingTime -= 1;
@@ -82,13 +88,17 @@ namespace LaunchWait.UserControls
                 _timer.Stop();
                 RunProcess();
             }
-
         }
 
         private void nameButton_Click(object sender, RoutedEventArgs e)
         {
-            checkBox.IsChecked = false;
             RunProcess();
+        }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            _timer.Stop();
+            SendComplete();
         }
     }
 }

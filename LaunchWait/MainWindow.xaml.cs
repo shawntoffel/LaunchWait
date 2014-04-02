@@ -23,6 +23,7 @@ namespace LaunchWait
             foreach (Configuration.Process process in allProcesses.LaunchSettings)
             {
                 var control = new ProcessTimer(process.Name, process.Path, process.Delay);
+                control.Complete += processTimer_Complete;
 
                 stackPanel.Children.Add(control);
             }
@@ -61,11 +62,23 @@ namespace LaunchWait
             }
         }
 
+        private void processTimer_Complete(object sender, System.EventArgs e)
+        {
+            stackPanel.Children.Remove(sender as ProcessTimer);
+
+            if (stackPanel.Children.Count == 0)
+            {
+                Close();
+            }
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var workArea = System.Windows.SystemParameters.WorkArea;
 
             this.MaxHeight = workArea.Height;
+            this.MinHeight = this.ActualHeight;
+
             this.Left = workArea.Right - this.Width;
             this.Top = workArea.Bottom - this.Height;
         }

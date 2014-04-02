@@ -7,10 +7,10 @@
     <Grid>
         <ProgressBar x:Name="progressBar" HorizontalAlignment="Left" Height="10" Margin="10,27,0,0" VerticalAlignment="Top" Width="100" Foreground="#FF1530AE" Value="100"/>
         <Label x:Name="delayLabel" Content="5" HorizontalAlignment="Left" Margin="115,19,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.5,-0.5" Width="37"/>
-        <CheckBox x:Name="checkBox" Content="" Margin="152,25,0,0" IsChecked="True" ClickMode="Press"/>
         <Button x:Name="nameButton" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" Width="100" Height="20" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="10" Click="nameButton_Click">
             <TextBlock x:Name="nameTextBlock" Text="Skype" TextAlignment="Left" Width="100" FontSize="11"></TextBlock>
         </Button>
+        <Button x:Name="closeButton" Content="x" HorizontalAlignment="Left" Margin="152,19,0,0" VerticalAlignment="Top" Width="22" Background="{x:Null}" Click="closeButton_Click"/>
 
     </Grid>
 </UserControl>
