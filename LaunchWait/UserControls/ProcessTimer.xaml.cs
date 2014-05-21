@@ -42,14 +42,7 @@ namespace LaunchWait.UserControls
         {
             delayLabel.Content = _remainingTime.ToString();
 
-            if (_delay <= 0)
-            {
-                progressBar.Value = 0;
-            }
-            else
-            {
-                progressBar.Value = (_remainingTime * 100) / _delay;
-            }
+            progressBar.Value = (_delay > 0) ? ((_remainingTime * 100) / _delay) : 0;
         }
 
         private void SendComplete()
@@ -62,6 +55,11 @@ namespace LaunchWait.UserControls
 
         public void RunProcess()
         {
+            if (_remainingTime > 0)
+            {
+                _timer.Stop();
+            }
+
             try
             {
                 System.Diagnostics.Process.Start(_path);
