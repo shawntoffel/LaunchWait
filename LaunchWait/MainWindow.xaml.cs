@@ -28,7 +28,7 @@ namespace LaunchWait
             foreach (Configuration.Process process in allProcesses.LaunchSettings)
             {
                 // create a new process timer with the configuration information
-                var control = new ProcessTimer(process.Name, process.Path, process.Delay);
+                var control = new ProcessTimer(process.Name, process.Path, process.Arguments, process.Delay);
                 control.Complete += processTimer_Complete;
 
                 // add the process control to the panel

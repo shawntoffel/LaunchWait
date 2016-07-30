@@ -42,5 +42,18 @@ namespace LaunchWait.Configuration
                 this["delay"] = value;
             }
         }
+
+        [ConfigurationProperty("arguments")]
+        public string Arguments
+        {
+            get
+            {
+                return (string)this["arguments"];
+            }
+            set
+            {
+                this["arguments"] = value;
+            }
+        }
     }
 }

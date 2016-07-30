@@ -11,18 +11,20 @@ namespace LaunchWait.UserControls
     public partial class ProcessTimer : UserControl
     {
         private string _path;
+        private string _arguments;
         private int _delay;
         private int _remainingTime;
         private DispatcherTimer _timer;
 
         public event EventHandler Complete;
 
-        public ProcessTimer(string name, string path, int delay)
+        public ProcessTimer(string name, string path, string arguments, int delay)
         {
             InitializeComponent();
 
             _path = path;
             _delay = delay;
+            _arguments = arguments;
 
             // set the process name to display
             nameTextBlock.Text = name;
@@ -81,7 +83,7 @@ namespace LaunchWait.UserControls
 
             try
             {
-                System.Diagnostics.Process.Start(_path);
+                System.Diagnostics.Process.Start(_path, _arguments);
             }
             catch (Exception ex)
             {
